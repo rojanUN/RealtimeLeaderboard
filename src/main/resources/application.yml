@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: LEADERBOARD-APPLICATION
+  datasource:
+    url: jdbc:postgresql://localhost:5432/leaderboard
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
