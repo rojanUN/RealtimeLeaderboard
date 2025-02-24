@@ -12,10 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public final class Response {
-
     private boolean success;
     private String code;
     private String message;
     private Object data;
-
 }
