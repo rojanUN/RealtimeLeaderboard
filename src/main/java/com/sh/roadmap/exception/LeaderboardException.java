@@ -30,4 +30,9 @@ public class LeaderboardException extends Exception {
         super(throwable);
         this.message = throwable.getMessage();
     }
+
+    public LeaderboardException(String code) {
+        this.code = code;
+        this.message = code;
+    }
 }

@@ -3,19 +3,20 @@ package com.sh.roadmap.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity(name = "leaderboard")
-public class LeaderboardEntity extends AbstractBaseEntity {
+@Getter
+@Setter
+@Entity(name = "score")
+public class ScoreEntity extends AbstractBaseEntity {
+    private long score;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "game_id")
     private GameEntity game;
-
-    @ManyToOne
-    private ScoreEntity score;
 }
