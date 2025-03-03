@@ -26,6 +26,7 @@ public class UserEntity extends AbstractBaseEntity implements UserDetails {
 
     private String password;
 
+    @Column(unique = true)
     private String email;
 
     private LocalDateTime lastPasswordChange;

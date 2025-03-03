@@ -1,5 +1,6 @@
 package com.sh.roadmap.exception;
 
+import com.sh.roadmap.util.MessageBundle;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,6 @@ public class LeaderboardException extends Exception {
 
     public LeaderboardException(String code) {
         this.code = code;
-        this.message = code;
+        this.message = MessageBundle.getErrorMessageByCode(code);
     }
 }

@@ -13,6 +13,7 @@ import javax.crypto.SecretKey;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -62,8 +63,12 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-        return buildToken(extraClaims, userDetails, expiration);
+    public String generateToken(UserDetails userDetails) {
+        return buildToken(new HashMap<>(), userDetails, expiration);
+    }
+
+    public long getExpiration() {
+        return expiration;
     }
 
     private String buildToken(Map<String, Object> extraClaims, UserDetails userDetails, long expiration) {

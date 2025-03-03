@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(LeaderboardException.class)
     public ResponseEntity<Response> handleLeaderboardException(LeaderboardException e) {
-        return ResponseEntity.status(e.getHttpStatus())
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(Response.builder()
                         .message(e.getMessage())
                         .code(e.getCode())
