@@ -3,6 +3,7 @@ package com.sh.roadmap.exception.handler;
 import com.sh.roadmap.builder.ResponseBuilder;
 import com.sh.roadmap.exception.LeaderboardException;
 import com.sh.roadmap.model.Response;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -36,6 +37,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Response> handleException(Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(ResponseBuilder.buildUnknownFailResponse(e));
+    }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<Response> handleExpiredJwtException(ExpiredJwtException e) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(ResponseBuilder.buildUnknownFailResponse(e));
     }
 

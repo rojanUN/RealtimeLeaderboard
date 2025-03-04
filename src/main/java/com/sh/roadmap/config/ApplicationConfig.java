@@ -6,6 +6,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.UUID;
 
 @Configuration
 @RequiredArgsConstructor
@@ -60,6 +63,11 @@ public class ApplicationConfig {
         errorSource.setBasename("errors");
         errorSource.setDefaultEncoding("UTF-8");
         return errorSource;
+    }
+
+    @Bean
+    public AuditorAware<UUID> auditorAware() {
+        return new ApplicationAuditAware();
     }
 
 }

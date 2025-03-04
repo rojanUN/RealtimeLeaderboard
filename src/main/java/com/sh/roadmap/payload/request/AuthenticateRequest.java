@@ -1,12 +1,12 @@
 package com.sh.roadmap.payload.request;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class AuthenticateRequest {
     @NotNull
-    private String email;
+    String email;
     @NotNull
-    private String password;
+    String password;
 }

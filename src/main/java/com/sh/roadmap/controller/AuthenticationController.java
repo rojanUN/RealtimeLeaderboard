@@ -3,7 +3,7 @@ package com.sh.roadmap.controller;
 import com.sh.roadmap.annotation.AuthenticationRestController;
 import com.sh.roadmap.exception.LeaderboardException;
 import com.sh.roadmap.model.Response;
-import com.sh.roadmap.payload.RegisterUserRequest;
+import com.sh.roadmap.payload.request.RegisterUserRequest;
 import com.sh.roadmap.payload.request.AuthenticateRequest;
 import com.sh.roadmap.service.AuthService;
 import jakarta.validation.Valid;

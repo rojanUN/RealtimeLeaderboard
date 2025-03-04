@@ -2,6 +2,7 @@ package com.sh.roadmap.builder;
 
 import com.sh.roadmap.model.Response;
 import com.sh.roadmap.util.ExceptionUtil;
+import com.sh.roadmap.util.MessageBundle;
 import lombok.Data;
 
 @Data
@@ -19,11 +20,11 @@ public class ResponseBuilder {
                 .build();
     }
 
-    public static Response buildSuccessResponse(String message) {
+    public static Response buildSuccessResponse(String code) {
         return Response.builder()
                 .success(Boolean.TRUE)
                 .code("0000")
-                .message(message)
+                .message(MessageBundle.getMessageByCode(code))
                 .build();
     }
 

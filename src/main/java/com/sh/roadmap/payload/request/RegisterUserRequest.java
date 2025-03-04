@@ -1,16 +1,15 @@
-package com.sh.roadmap.payload;
+package com.sh.roadmap.payload.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class RegisterUserRequest {
-
     @NotEmpty
-    private String username;
+    String username;
     @NotEmpty
-    private String password;
+    String password;
     @Email
-    private String email;
+    String email;
 }
