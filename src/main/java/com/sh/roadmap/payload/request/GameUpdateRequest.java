@@ -1,4 +1,4 @@
-package com.sh.roadmap;
+package com.sh.roadmap.payload.request;
 
 import lombok.Value;
 

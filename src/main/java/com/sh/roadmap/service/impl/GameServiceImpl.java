@@ -1,7 +1,7 @@
 package com.sh.roadmap.service.impl;
 
-import com.sh.roadmap.GameResponse;
-import com.sh.roadmap.GameUpdateRequest;
+import com.sh.roadmap.payload.response.GameResponse;
+import com.sh.roadmap.payload.request.GameUpdateRequest;
 import com.sh.roadmap.builder.ResponseBuilder;
 import com.sh.roadmap.entity.GameEntity;
 import com.sh.roadmap.enums.StatusEnum;

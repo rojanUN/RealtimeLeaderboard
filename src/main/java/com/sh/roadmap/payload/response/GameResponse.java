@@ -1,14 +1,13 @@
-package com.sh.roadmap;
+package com.sh.roadmap.payload.response;
 
-import lombok.Value;
-
-import java.io.Serializable;
+import lombok.Data;
 
 /**
  * DTO for {@link com.sh.roadmap.entity.GameEntity}
  */
-@Value
-public class GameEntityDto implements Serializable {
+@Data
+public class GameResponse {
+    String createdAt;
     String createdBy;
     String lastModifiedBy;
     String name;

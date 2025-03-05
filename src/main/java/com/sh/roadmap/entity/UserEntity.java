@@ -46,4 +46,8 @@ public class UserEntity extends AbstractBaseEntity implements UserDetails {
     public String getUsername() {
         return getEmail();
     }
+
+    public String getName() {
+        return getUsername();
+    }
 }

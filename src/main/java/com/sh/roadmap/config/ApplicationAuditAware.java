@@ -1,5 +1,6 @@
 package com.sh.roadmap.config;
 
+import com.sh.roadmap.entity.UserEntity;
 import lombok.NonNull;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -19,6 +20,7 @@ public class ApplicationAuditAware implements AuditorAware<UUID> {
         if (authentication == null || !authentication.isAuthenticated() || authentication instanceof AnonymousAuthenticationToken) {
             return Optional.empty();
         }
-        return Optional.of(UUID.fromString(authentication.getName()));
+        UserEntity principal = (UserEntity) authentication.getPrincipal();
+        return Optional.of(principal.getId());
     }
 }

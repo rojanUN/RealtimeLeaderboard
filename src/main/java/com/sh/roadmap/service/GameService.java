@@ -1,6 +1,6 @@
 package com.sh.roadmap.service;
 
-import com.sh.roadmap.GameUpdateRequest;
+import com.sh.roadmap.payload.request.GameUpdateRequest;
 import com.sh.roadmap.exception.LeaderboardException;
 import com.sh.roadmap.model.Response;
 import com.sh.roadmap.payload.request.GameRequest;

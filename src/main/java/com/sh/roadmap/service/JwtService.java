@@ -67,9 +67,9 @@ public class JwtService {
         return buildToken(new HashMap<>(), userDetails, expiration);
     }
 
-    public long getExpiration() {
-        return expiration;
-    }
+//    public long getExpiration() {
+//        return expiration;
+//    }
 
     private String buildToken(Map<String, Object> extraClaims, UserDetails userDetails, long expiration) {
         return Jwts.builder()
