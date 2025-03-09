@@ -16,6 +16,7 @@ public class GameEntity extends AbstractBaseEntity {
     private int gameRating;
     private StatusEnum status;
     private String description;
+    private long maxScore;
 
     @OneToMany(mappedBy = "game")
     private List<ScoreEntity> score;
