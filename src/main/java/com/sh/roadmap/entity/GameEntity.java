@@ -3,6 +3,7 @@ package com.sh.roadmap.entity;
 import com.sh.roadmap.enums.StatusEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,4 +21,16 @@ public class GameEntity extends AbstractBaseEntity {
 
     @OneToMany(mappedBy = "game")
     private List<ScoreEntity> score;
+
+
+    @PrePersist
+    public void setDefaults() {
+        if (this.status == null) {
+            this.status = StatusEnum.ACTIVE;
+        }
+        if (this.maxScore == 0) {
+            this.maxScore = 1000;
+        }
+    }
+
 }

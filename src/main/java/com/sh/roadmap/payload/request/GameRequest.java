@@ -18,4 +18,6 @@ public class GameRequest {
     int gameRating;
     @NotEmpty
     String description;
+    long maxScore;
+
 }

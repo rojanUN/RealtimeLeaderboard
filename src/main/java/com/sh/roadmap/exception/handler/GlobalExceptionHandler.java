@@ -42,8 +42,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ExpiredJwtException.class)
     public ResponseEntity<Response> handleExpiredJwtException(ExpiredJwtException e) {
-        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-                .body(ResponseBuilder.buildUnknownFailResponse(e));
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ResponseBuilder.buildFailResponse("JWT000"));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

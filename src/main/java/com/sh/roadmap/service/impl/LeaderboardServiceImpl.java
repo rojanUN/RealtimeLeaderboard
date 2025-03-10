@@ -22,13 +22,11 @@ public class LeaderboardServiceImpl implements LeaderboardService {
 
     private final ScoreRepository scoreRepository;
     private final GameRepository gameRepository;
-    private final UserRepository userRepository;
 
     @Override
     public Response submitScore(ScoreRequest request) throws LeaderboardException {
 
         GameEntity game = gameRepository.findById(request.getGameId()).orElseThrow(() -> new LeaderboardException("GAM002"));
-//        UserEntity user = userRepository.findById(request.getUserId()).orElseThrow(() -> new LeaderboardException("USR001"));
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserEntity user = (UserEntity) authentication.getPrincipal();
         ScoreEntity score = ScoreEntity.builder()

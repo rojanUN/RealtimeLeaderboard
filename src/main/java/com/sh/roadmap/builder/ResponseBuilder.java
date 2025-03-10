@@ -46,4 +46,12 @@ public class ResponseBuilder {
 
     }
 
+    public static Response buildFailResponse(String code) {
+        return Response.builder()
+                .success(Boolean.FALSE)
+                .code("00000")
+                .message(MessageBundle.getErrorMessageByCode(code))
+                .build();
+    }
+
 }
