@@ -2,6 +2,7 @@ package com.sh.roadmap.controller;
 
 import com.sh.roadmap.exception.LeaderboardException;
 import com.sh.roadmap.model.Response;
+import com.sh.roadmap.payload.request.LeaderboardGetRequest;
 import com.sh.roadmap.payload.request.ScoreRequest;
 import com.sh.roadmap.service.LeaderboardService;
 import jakarta.validation.Valid;
@@ -22,6 +23,11 @@ public class LeaderboardController {
     @PostMapping("/submit-score")
     public ResponseEntity<Response> submitScore(@Valid @RequestBody ScoreRequest request) throws LeaderboardException {
         return ResponseEntity.ok(leaderboardService.submitScore(request));
+    }
+
+    @PostMapping("/get")
+    public ResponseEntity<Response> getLeaderboard(@RequestBody LeaderboardGetRequest request) throws LeaderboardException {
+        return ResponseEntity.ok(leaderboardService.getLeaderboard(request));
     }
 
 }
