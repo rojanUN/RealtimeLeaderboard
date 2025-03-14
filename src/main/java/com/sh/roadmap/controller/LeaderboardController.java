@@ -27,7 +27,7 @@ public class LeaderboardController {
 
     @PostMapping("/get")
     public ResponseEntity<Response> getLeaderboard(@RequestBody LeaderboardGetRequest request) throws LeaderboardException {
-        return ResponseEntity.ok(leaderboardService.getLeaderboard(request));
+        return ResponseEntity.ok(leaderboardService.leaderboard(request));
     }
 
 }

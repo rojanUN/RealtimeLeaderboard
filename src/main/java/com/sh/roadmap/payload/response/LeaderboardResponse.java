@@ -1,11 +1,13 @@
 package com.sh.roadmap.payload.response;
 
+import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
+@Builder
 @Data
 public class LeaderboardResponse {
     private String game;
-    private String username;
-    private String submittedAt;
-    private long score;
+    private List<ScoreResponse> scores;
 }

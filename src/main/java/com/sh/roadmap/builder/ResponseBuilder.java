@@ -20,6 +20,15 @@ public class ResponseBuilder {
                 .build();
     }
 
+    public static Response buildSuccessResponseWithCode(String code, Object data) {
+        return Response.builder()
+                .success(Boolean.TRUE)
+                .code("0000")
+                .data(data)
+                .message(MessageBundle.getMessageByCode(code))
+                .build();
+    }
+
     public static Response buildSuccessResponse(String code) {
         return Response.builder()
                 .success(Boolean.TRUE)

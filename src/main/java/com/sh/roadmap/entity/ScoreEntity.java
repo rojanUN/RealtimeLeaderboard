@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "score")
 public class ScoreEntity extends AbstractBaseEntity {
-    private long score;
+    private Double score;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

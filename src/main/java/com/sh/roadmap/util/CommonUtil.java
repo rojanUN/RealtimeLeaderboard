@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,5 +33,10 @@ public class CommonUtil {
         List<UserEntity> userEntities = userRepository.findAllById(userIds);
         return userEntities.stream()
                 .collect(Collectors.toMap(UserEntity::getId, UserEntity::getName));
+    }
+
+    public static UserEntity getLoggedInUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (UserEntity) authentication.getPrincipal();
     }
 }

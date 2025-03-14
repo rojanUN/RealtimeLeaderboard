@@ -9,4 +9,6 @@ public interface LeaderboardService {
     Response submitScore(ScoreRequest request) throws LeaderboardException;
 
     Response getLeaderboard(LeaderboardGetRequest request) throws LeaderboardException;
+
+    Response leaderboard(LeaderboardGetRequest request) throws LeaderboardException;
 }
