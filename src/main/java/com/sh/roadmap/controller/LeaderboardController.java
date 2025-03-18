@@ -8,6 +8,8 @@ import com.sh.roadmap.service.LeaderboardService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +31,15 @@ public class LeaderboardController {
     public ResponseEntity<Response> getLeaderboard(@RequestBody LeaderboardGetRequest request) throws LeaderboardException {
         return ResponseEntity.ok(leaderboardService.leaderboard(request));
     }
+//
+//    @MessageMapping("/submitScore")
+//    @SendTo("/topic/leaderboard")
+//    public Response handleWebSocketMessage(ScoreRequest request) throws LeaderboardException {
+//        // Process the score submission
+//        leaderboardService.submitScore(request);
+//        // Retrieve and return the updated leaderboard
+//        return leaderboardService.leaderboard();
+//    }
+
 
 }

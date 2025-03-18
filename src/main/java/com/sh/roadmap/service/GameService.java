@@ -16,4 +16,6 @@ public interface GameService {
     Response deleteGame(UUID gameId) throws LeaderboardException;
 
     Response getGame(UUID gameId) throws LeaderboardException;
+
+    Response getAllGames() throws LeaderboardException;
 }

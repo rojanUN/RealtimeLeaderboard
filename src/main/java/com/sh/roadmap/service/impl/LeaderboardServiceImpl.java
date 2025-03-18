@@ -22,6 +22,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,8 @@ public class LeaderboardServiceImpl implements LeaderboardService {
     private final GameRepository gameRepository;
     private final RedisTemplate<String, Object> redisTemplate;
     private final UserRepository userRepository;
+    private final SimpMessagingTemplate messagingTemplate;
+
 
     @Scheduled(cron = "0 0 * * * *")
     public void persistScoreToDb() throws LeaderboardException {
@@ -48,6 +51,7 @@ public class LeaderboardServiceImpl implements LeaderboardService {
             for (ZSetOperations.TypedTuple<Object> tuple : Objects.requireNonNull(redisSet)) {
                 UUID userId = UUID.fromString((String) Objects.requireNonNull(tuple.getValue()));
                 Double score = tuple.getScore();
+
 
                 GameEntity game = gameRepository.findById(gameId).orElseThrow(() -> new LeaderboardException("Game not found"));
 
@@ -73,6 +77,23 @@ public class LeaderboardServiceImpl implements LeaderboardService {
         double randomScore = 1 + (int) (Math.random() * 1000);
         redisTemplate.opsForZSet().add(String.valueOf(request.getGameId()), user.getId(), randomScore);
         return ResponseBuilder.buildSuccessResponse("message.score.submit.success");
+    }
+
+    @Scheduled(fixedRate = 1000)
+    public void testPopulate() {
+        List<UUID> userIds = userRepository.findAllIds();
+        UUID gameId = UUID.fromString("b85e1aae-d7c5-4746-ac11-3ed3330361e9");
+        userIds.forEach(userId -> {
+            double randomScore = 1 + (int) (Math.random() * 1000);
+            redisTemplate.opsForZSet().add(String.valueOf(gameId), userId, randomScore);
+            ScoreResponse scoreResponse = new ScoreResponse();
+            scoreResponse.setUsername(userRepository.findById(userId).get().getUsername());
+            scoreResponse.setScore(randomScore);
+            scoreResponse.setRank(1); // Set the appropriate rank
+
+            // Send the updated score to all subscribed clients
+            messagingTemplate.convertAndSend("/topic/leaderboard", scoreResponse);
+        });
     }
 
     @Override

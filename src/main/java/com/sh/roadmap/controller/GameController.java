@@ -38,4 +38,9 @@ public class GameController {
         return ResponseEntity.ok(gameService.deleteGame(id));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<Response> getAllGames() throws LeaderboardException {
+        return ResponseEntity.ok(gameService.getAllGames());
+    }
+
 }

@@ -2,6 +2,7 @@ package com.sh.roadmap.repository;
 
 import com.sh.roadmap.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,5 +17,8 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     boolean existsByEmail(String email);
 
     List<UserEntity> findAllByIdIn(List<UUID> ids);
+
+    @Query("select u.id from users u")
+    List<UUID> findAllIds();
 
 }
