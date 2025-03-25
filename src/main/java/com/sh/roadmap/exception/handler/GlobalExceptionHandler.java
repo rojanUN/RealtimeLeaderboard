@@ -40,6 +40,12 @@ public class GlobalExceptionHandler {
                 .body(ResponseBuilder.buildUnknownFailResponse(e));
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Response> handleRuntimeException(RuntimeException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(ResponseBuilder.buildUnknownFailResponse(e));
+    }
+
     @ExceptionHandler(ExpiredJwtException.class)
     public ResponseEntity<Response> handleExpiredJwtException(ExpiredJwtException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)

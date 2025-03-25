@@ -3,6 +3,7 @@ package com.sh.roadmap.controller;
 import com.sh.roadmap.exception.LeaderboardException;
 import com.sh.roadmap.model.Response;
 import com.sh.roadmap.payload.request.GameRequest;
+import com.sh.roadmap.payload.request.GameUpdateRequest;
 import com.sh.roadmap.service.GameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +43,11 @@ public class GameController {
     @GetMapping("/all")
     public ResponseEntity<Response> getAllGames() throws LeaderboardException {
         return ResponseEntity.ok(gameService.getAllGames());
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Response> updateGame(@PathVariable UUID id, @RequestBody GameUpdateRequest request) throws LeaderboardException {
+        return ResponseEntity.ok(gameService.updateGame(id, request));
     }
 
 }

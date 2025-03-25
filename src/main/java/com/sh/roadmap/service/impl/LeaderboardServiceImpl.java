@@ -79,7 +79,7 @@ public class LeaderboardServiceImpl implements LeaderboardService {
         return ResponseBuilder.buildSuccessResponse("message.score.submit.success");
     }
 
-    @Scheduled(fixedRate = 1000)
+//    @Scheduled(fixedRate = 1000)
     public void testPopulate() {
         List<UUID> userIds = userRepository.findAllIds();
         UUID gameId = UUID.fromString("b85e1aae-d7c5-4746-ac11-3ed3330361e9");
@@ -89,7 +89,7 @@ public class LeaderboardServiceImpl implements LeaderboardService {
             ScoreResponse scoreResponse = new ScoreResponse();
             scoreResponse.setUsername(userRepository.findById(userId).get().getUsername());
             scoreResponse.setScore(randomScore);
-            scoreResponse.setRank(1); // Set the appropriate rank
+//            scoreResponse.setRank(1); // Set the appropriate rank
 
             // Send the updated score to all subscribed clients
             messagingTemplate.convertAndSend("/topic/leaderboard", scoreResponse);

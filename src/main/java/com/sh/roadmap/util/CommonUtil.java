@@ -1,8 +1,12 @@
 package com.sh.roadmap.util;
 
+import com.sh.roadmap.entity.GameEntity;
 import com.sh.roadmap.entity.UserEntity;
+import com.sh.roadmap.exception.LeaderboardException;
 import com.sh.roadmap.payload.request.PaginationRequest;
+import com.sh.roadmap.repository.GameRepository;
 import com.sh.roadmap.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +25,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CommonUtil {
     private final UserRepository userRepository;
+    private final GameRepository gameRepository;
 
     public static Pageable getPageable(PaginationRequest request) {
         return PageRequest.of(request.getPageNo(), request.getPageSize(), Sort.by(Objects.equals(request.getDirection(), "asc") ? Sort.Direction.ASC : Sort.Direction.DESC,
@@ -39,4 +44,14 @@ public class CommonUtil {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (UserEntity) authentication.getPrincipal();
     }
+
+    @Transactional
+    public void simulateConcurrentUpdate(UUID gameId) throws LeaderboardException {
+        GameEntity gameEntity = gameRepository.findById(gameId).orElseThrow(() -> new LeaderboardException("GAM002"));
+        gameEntity.setDescription("Game Description");
+        gameEntity.setName("Game Name");
+        gameEntity.setGameRating((int) (Math.random() * 100));
+        gameRepository.saveAndFlush(gameEntity);
+    }
+
 }
