@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(CorsConfig.corsConfigurationSource()))
 //                .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/auth/**", "/ws/**")
+                        .requestMatchers("/auth/**", "/ws/**", "/test/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated()

@@ -36,4 +36,8 @@ public class LeaderboardException extends Exception {
         this.code = code;
         this.message = MessageBundle.getErrorMessageByCode(code);
     }
+
+    public LeaderboardException(Object o) {
+        this.data = o;
+    }
 }

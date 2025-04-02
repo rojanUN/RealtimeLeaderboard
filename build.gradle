@@ -26,6 +26,17 @@ dependencies {
     implementation 'org.modelmapper:modelmapper:3.2.2'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.4.3'
     implementation 'org.springframework.boot:spring-boot-starter-websocket:3.4.3'
+    implementation("org.apache.camel:camel-core:4.10.3")
+    implementation("org.apache.camel:camel-spring:4.10.3")
+    implementation("org.apache.camel:camel-jackson:4.10.3")
+    implementation("org.apache.camel:camel-http:4.10.3")
+    implementation("org.apache.camel:camel-jpa:4.10.3")
+    implementation("org.apache.camel:camel-kafka:4.10.3")
+    implementation("org.apache.camel.kafkaconnector:camel-kafka-connector:4.10.2")
+    implementation("org.apache.camel.springboot:camel-jpa-starter:4.10.3")
+    implementation("org.hibernate.orm:hibernate-core:7.0.0.Beta5")
+    implementation("jakarta.persistence:jakarta.persistence-api:3.2.0")
+    implementation("org.springframework.kafka:spring-kafka:4.0.0-M1")
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
     compileOnly 'org.projectlombok:lombok:1.18.36'
