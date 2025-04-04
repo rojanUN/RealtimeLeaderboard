@@ -21,12 +21,15 @@ spring:
       bootstrap-servers: localhost:9092
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: dbz_group
 security:
   jwt:
     secret-key: 3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
     expiration-time: 360000
 logging:
   level:
+    org.apache.kafka: DEBUG
+    org.springframework.kafka: DEBUG
     org:
       springframework:
         security:

@@ -13,24 +13,24 @@ public class SimpleRouteBuilder extends RouteBuilder {
 
     @Override
     public void configure() {
-        from("timer:fetchUser?period=5000")
-//                .setHeader("Authorization", constant("Bearer YOUR_ACCESS_TOKEN"))
-                .toD("http://localhost:8001/api/v1/user/d5baf169-796f-478a-9a74-76696e215a6e")
-                .unmarshal().json()
-                .process(exchange -> {
-
-                    Map<String, Object> body = exchange.getIn().getBody(Map.class);
-                    Map<String, Object> data = (Map<String, Object>) body.get("data");
-
-                    if (data != null) {
-                        PermissionEntity permissionEntity = new PermissionEntity();
-                        permissionEntity.setName((String) data.get("name"));
-                        permissionEntity.setDescription((String) data.get("description"));
-                        exchange.getIn().setBody(permissionEntity);
-                    } else {
-                        exchange.setProperty("CamelFailureHandled", true);
-                    }
-                })
-                .to("jpa:com.sh.roadmap.entity.PermissionEntity");
+//        from("timer:fetchUser?period=5000")
+////                .setHeader("Authorization", constant("Bearer YOUR_ACCESS_TOKEN"))
+//                .toD("http://localhost:8001/api/v1/user/d5baf169-796f-478a-9a74-76696e215a6e")
+//                .unmarshal().json()
+//                .process(exchange -> {
+//
+//                    Map<String, Object> body = exchange.getIn().getBody(Map.class);
+//                    Map<String, Object> data = (Map<String, Object>) body.get("data");
+//
+//                    if (data != null) {
+//                        PermissionEntity permissionEntity = new PermissionEntity();
+//                        permissionEntity.setName((String) data.get("name"));
+//                        permissionEntity.setDescription((String) data.get("description"));
+//                        exchange.getIn().setBody(permissionEntity);
+//                    } else {
+//                        exchange.setProperty("CamelFailureHandled", true);
+//                    }
+//                })
+//                .to("jpa:com.sh.roadmap.entity.PermissionEntity");
     }
 }
